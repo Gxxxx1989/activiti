@@ -1,0 +1,13 @@
+package activity.processdefinition;
+
+import org.activiti.engine.ProcessEngines;
+
+public class ProcessDefinition {
+	ProcessEngines.get
+	/**
+	 * 部署流程定义
+	 */
+	public void name() {
+		
+	}
+}

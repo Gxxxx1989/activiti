@@ -1,0 +1,141 @@
+package activity.variables;
+
+import java.io.InputStream;
+import java.util.Date;
+import java.util.List;
+
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngineConfiguration;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
+import org.activiti.engine.history.HistoricVariableInstance;
+import org.activiti.engine.repository.Deployment;
+import org.activiti.engine.runtime.ProcessInstance;
+import org.h2.util.New;
+import org.junit.Test;
+public class ProcessVariables {
+	
+//	ProcessEngine processEngine=ProcessEngines.getDefaultProcessEngine();
+	ProcessEngine processEngine=ProcessEngineConfiguration
+			.createProcessEngineConfigurationFromResource("activiti.cfg.xml").buildProcessEngine();
+	/**
+	 * 部署流程定义 inputstream
+	 * @author guoxi 
+	 */
+	@Test
+	public void deploymentProcessDefinition_inputstream() {
+		String resourceName1="ProcessVariables.bpmn";
+		String resourceName2="ProcessVariables.png";
+		//this.getClass().getResourceAsStream("/diagrams/ProcessVariables.bpmn");
+		InputStream inputStream1=this.getClass().getClassLoader().getResourceAsStream("diagrams/ProcessVariables.bpmn");
+		InputStream inputStream2=this.getClass().getClassLoader().getResourceAsStream("diagrams/ProcessVariables.png");
+		 Deployment deploy = processEngine.getRepositoryService()/**与流程对象和部署定义相关的service*/
+		 			  .createDeployment()/**创建一个部署对象*/
+		 			  .name("流程定义")/**添加部署名称*/
+		 			  .addInputStream(resourceName1, inputStream1)
+		 			  .addInputStream(resourceName2, inputStream2)
+		 			  .deploy();
+		 System.out.println("部署deploy:id:"+deploy.getId());
+		 System.out.println("部署deploy:name:"+deploy.getName());
+	}
+	/**
+	 * 启动流程实例
+	 * @author guoxi 
+	 */
+	@Test
+	public  void startDeploymentInstance() {
+		//流程定义的key
+		String processDefinitionKey="ProcessVariables";
+		ProcessInstance processInstance = processEngine.getRuntimeService()/**与正在执行的流程实例和执行对象相关的service*/
+		/**使用流程定义的key启动流程实例,
+		 * key对应helloworld.bpmn文件中 process id属性值，
+		 * 使用key启动，默认是按照最新版本的流程定义启动*/
+					  .startProcessInstanceByKey(processDefinitionKey);
+		System.out.println("流程实例："+processInstance.getId());/**流程实例id*/
+		System.out.println("流程定义："+processInstance.getProcessDefinitionId());/**流程定义id*/
+	}
+	/**设置流程变量*/
+	@Test
+	public void setVariable(){
+		//类加载资源三种方式
+		//从classpath下加载指定名称的文件
+		InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("diagrams/ProcessVariables.bpmn");
+		//从当前包下加载指定文件
+		InputStream inputStream2 = this.getClass().getResourceAsStream("");
+		//从classpath下加载指定名称的文件
+		InputStream inputStream3 = this.getClass().getResourceAsStream("/");
+		//任务id
+		String taskId="60004";
+//		processEngine.getTaskService().setVariableLocal(taskId, "请假天数", 3);//local便是与任务id绑定
+//		processEngine.getTaskService().setVariable(taskId, "请假日期", new Date());
+//		processEngine.getTaskService().setVariable(taskId, "请假原因", "回家");
+		/**设置流程变量 使用javabean*/
+		Person person=new Person();
+		person.setId(1);
+		person.setName("gxxx");
+		processEngine.getTaskService().setVariable(taskId, "人员信息", person);
+		System.out.println("设置流程变量成功");
+		
+		
+	}
+	/**获取流程变量*/
+	@Test
+	public void getProcessVariables(){
+		String taskId="60004";
+//		Integer days = (Integer) processEngine.getTaskService().getVariable(taskId, "请假天数");
+//		Date date = (Date) processEngine.getTaskService().getVariable(taskId, "请假日期");
+//		String reason = (String) processEngine.getTaskService().getVariable(taskId, "请假原因");
+//		System.out.println("days"+days);
+//		System.out.println("date"+date);
+//		System.out.println("reason"+reason);
+		/**使用javabean类型*/
+		Person person =(Person) processEngine.getTaskService().getVariable(taskId, "人员信息");
+		System.out.println(person.getId());
+		System.out.println(person.getName());
+		
+	}
+	
+	/**模拟设置和获取流程变量场景*/
+	public void setVariables() {
+		/**与流程实例执行对象相关(正在执行)*/
+		RuntimeService runtimeService = processEngine.getRuntimeService();
+		/**与任务相关(正在执行)*/
+		TaskService taskService = processEngine.getTaskService();
+		/**设施流程变量*/
+//		runtimeService.setVariable(executionId, variableName, value);//表示使用执行对象id 和流程变量名称来设置流程变量的值（每次只能设置一个值）
+//		runtimeService.setVariables(executionId, variables);//表示使用执行对象id和map集合来设置流程变量，map的key就是流程变量名称，value就是流程便可的值
+//		taskService.setVariable(taskId, variableName, value);//表示使用任务id 和流程变量名称来设置流程变量的值（每次只能设置一个值）
+//		taskService.setVariables(taskId, variables);//表示使用任务id 和map集合来设置流程变量，map的key就是流程变量名称，value就是流程便可的值
+//		runtimeService.startProcessInstanceByKey(processDefinitionKey, variables);//启动流程实例同时这是流程变量
+//		taskService.complete(taskId, variables);//完成任务的同时设置流程变量
+		
+		
+//		runtimeService.getVariable(executionId, variableName);//使用执行对象id和流程变量名称获取流程变量的值
+//		runtimeService.getVariables(executionId)//使用执行对象id 获取所有的流程变量 将流程变量放到map中
+//		runtimeService.getVariables(executionId, variableNames);//使用执行对象id 获取流程变量的值 通过设置流程变量名称 放在集合中 获取指定流程变量名称的流程变量值 值也是存在map中
+	
+	}
+	
+	@Test
+	public void comlepeMyPersonalTask() {
+		String taskId="75002";
+		processEngine.getTaskService().complete(taskId);
+		System.out.println("完成任务！！！ 任务id是:"+taskId);
+		
+	}
+	/**查询流程变量历史表*/
+	@Test
+	public void queryHistoryVariables(){
+		List<HistoricVariableInstance> list = processEngine.getHistoryService()
+		.createHistoricVariableInstanceQuery()
+		.variableName("请假天数").list();
+		for (HistoricVariableInstance historicVariableInstance : list) {
+			System.out.println(historicVariableInstance.getValue());
+			System.out.println(historicVariableInstance.getId());
+			System.out.println(historicVariableInstance.getVariableName());
+			System.out.println(historicVariableInstance.getVariableTypeName());
+			System.out.println("#############################################");
+		}
+		
+	}
+}

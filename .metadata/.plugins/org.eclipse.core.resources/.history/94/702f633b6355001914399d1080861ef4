@@ -1,0 +1,16 @@
+package activity.helloworld;
+
+import org.activiti.engine.ProcessEngines;
+
+public class HelloWorld {
+	
+	ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+	public void deploymentProcessDefinition() {
+		/**
+		 * 部署流程定义
+		 * @author guoxi
+		 */
+		
+		
+	}
+}

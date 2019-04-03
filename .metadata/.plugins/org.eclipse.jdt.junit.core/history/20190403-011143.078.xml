@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="HelloWorld" project="activity" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="activity.helloworld.HelloWorld" time="0.188">
+    <testcase name="deploymentProcessDefinition" classname="activity.helloworld.HelloWorld" time="0.119"/>
+    <testcase name="queryMypersonalTask" classname="activity.helloworld.HelloWorld" time="0.018"/>
+    <testcase name="startDeploymentInstance" classname="activity.helloworld.HelloWorld" time="0.051"/>
+  </testsuite>
+</testrun>

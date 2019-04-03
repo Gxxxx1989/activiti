@@ -1,0 +1,13 @@
+package activity;
+
+import org.junit.Test;
+
+public class TestActivity {
+	/**
+	 * 创建工作流需要的23张表
+	 */
+	@Test
+	public void test(){
+		processengine
+	}
+}

@@ -1,0 +1,21 @@
+package activity.helloworld;
+
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.RepositoryService;
+
+public class HelloWorld {
+	
+	ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+	/**
+	 * 部署流程定义
+	 * @author guoxi
+	 */
+	public void deploymentProcessDefinition() {
+		
+		 processEngine.getRepositoryService()/**与流程对象和部署定义相关的service*/
+		 			  .createDeployment()/**创建一个部署对象*/
+		 			  .addClasspathResource("");
+		
+	}
+}

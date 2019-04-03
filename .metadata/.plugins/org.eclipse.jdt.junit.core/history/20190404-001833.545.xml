@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="History.getHistoryProcessInstance" project="activity" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="getHistoryProcessInstance" classname="activity.history.History" time="0.0"/>
+</testrun>

@@ -1,0 +1,10 @@
+package activity;
+
+import org.junit.Test;
+
+public class Sequeflow {
+	@Test
+	public void test(){
+		
+	}
+}

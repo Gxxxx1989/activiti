@@ -1,0 +1,14 @@
+package activity.processdefinition;
+
+import org.activiti.engine.ProcessEngines;
+import org.junit.Test;
+
+public class ProcessDefinition {
+	/**
+	 * 部署流程定义
+	 */
+	@Test
+	public void name() {
+		
+	}
+}

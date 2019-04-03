@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ProcessVariables.deploymentProcessDefinition_inputstream" project="activity" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="deploymentProcessDefinition_inputstream" classname="activity.variables.ProcessVariables" time="0.093"/>
+</testrun>

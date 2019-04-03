@@ -1,0 +1,8 @@
+package activity.helloworld;
+/**
+ * 部署流程定义
+ * @author guoxi
+ */
+public class HelloWorld {
+
+}

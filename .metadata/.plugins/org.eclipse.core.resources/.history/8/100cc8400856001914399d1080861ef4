@@ -1,0 +1,5 @@
+package activity.instance;
+
+public class ProcessInstance {
+
+}

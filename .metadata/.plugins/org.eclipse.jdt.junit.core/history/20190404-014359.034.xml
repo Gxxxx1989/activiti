@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="SequenceFlow.deploymentProcessDefinition_InputStream" project="activity" tests="1" started="1" failures="0" errors="1" ignored="0">
+  <testcase name="deploymentProcessDefinition_InputStream" classname="activity.sequeflow.SequenceFlow" time="0.061">
+    <error>org.activiti.engine.ActivitiException: Error parsing XML&#13;
+	at org.activiti.engine.impl.bpmn.parser.BpmnParse.execute(BpmnParse.java:241)&#13;
+	at org.activiti.engine.impl.bpmn.deployer.BpmnDeployer.deploy(BpmnDeployer.java:113)&#13;
+	at org.activiti.engine.impl.persistence.deploy.DeploymentManager.deploy(DeploymentManager.java:57)&#13;
+	at org.activiti.engine.impl.cmd.DeployCmd.execute(DeployCmd.java:103)&#13;
+	at org.activiti.engine.impl.cmd.DeployCmd.execute(DeployCmd.java:37)&#13;
+	at org.activiti.engine.impl.interceptor.CommandInvoker.execute(CommandInvoker.java:24)&#13;
+	at org.activiti.engine.impl.interceptor.CommandContextInterceptor.execute(CommandContextInterceptor.java:57)&#13;
+	at org.activiti.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:31)&#13;
+	at org.activiti.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:40)&#13;
+	at org.activiti.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:35)&#13;
+	at org.activiti.engine.impl.RepositoryServiceImpl.deploy(RepositoryServiceImpl.java:78)&#13;
+	at org.activiti.engine.impl.repository.DeploymentBuilderImpl.deploy(DeploymentBuilderImpl.java:156)&#13;
+	at activity.sequeflow.SequenceFlow.deploymentProcessDefinition_InputStream(SequenceFlow.java:36)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at java.lang.reflect.Method.invoke(Unknown Source)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)&#13;
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)&#13;
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+Caused by: org.activiti.engine.impl.juel.TreeBuilderException: Error parsing '${message==‘重要’}': lexical error at position 11, encountered invalid character '‘', expected expression token&#13;
+	at org.activiti.engine.impl.juel.Builder.build(Builder.java:97)&#13;
+	at org.activiti.engine.impl.juel.TreeStore.get(TreeStore.java:61)&#13;
+	at org.activiti.engine.impl.juel.TreeValueExpression.&lt;init&gt;(TreeValueExpression.java:62)&#13;
+	at org.activiti.engine.impl.juel.ExpressionFactoryImpl.createValueExpression(ExpressionFactoryImpl.java:428)&#13;
+	at org.activiti.engine.impl.juel.ExpressionFactoryImpl.createValueExpression(ExpressionFactoryImpl.java:73)&#13;
+	at org.activiti.engine.impl.el.ExpressionManager.createExpression(ExpressionManager.java:80)&#13;
+	at org.activiti.engine.impl.bpmn.parser.handler.SequenceFlowParseHandler.executeParse(SequenceFlowParseHandler.java:61)&#13;
+	at org.activiti.engine.impl.bpmn.parser.handler.SequenceFlowParseHandler.executeParse(SequenceFlowParseHandler.java:30)&#13;
+	at org.activiti.engine.impl.bpmn.parser.handler.AbstractBpmnParseHandler.parse(AbstractBpmnParseHandler.java:81)&#13;
+	at org.activiti.engine.impl.bpmn.parser.BpmnParseHandlers.parseElement(BpmnParseHandlers.java:79)&#13;
+	at org.activiti.engine.impl.bpmn.parser.BpmnParse.processFlowElements(BpmnParse.java:450)&#13;
+	at org.activiti.engine.impl.bpmn.parser.handler.ProcessParseHandler.transformProcess(ProcessParseHandler.java:88)&#13;
+	at org.activiti.engine.impl.bpmn.parser.handler.ProcessParseHandler.executeParse(ProcessParseHandler.java:49)&#13;
+	at org.activiti.engine.impl.bpmn.parser.handler.ProcessParseHandler.executeParse(ProcessParseHandler.java:35)&#13;
+	at org.activiti.engine.impl.bpmn.parser.handler.AbstractBpmnParseHandler.parse(AbstractBpmnParseHandler.java:81)&#13;
+	at org.activiti.engine.impl.bpmn.parser.BpmnParseHandlers.parseElement(BpmnParseHandlers.java:79)&#13;
+	at org.activiti.engine.impl.bpmn.parser.BpmnParse.transformProcessDefinitions(BpmnParse.java:400)&#13;
+	at org.activiti.engine.impl.bpmn.parser.BpmnParse.execute(BpmnParse.java:233)&#13;
+	... 35 more&#13;
+&#13;
+</error>
+  </testcase>
+</testrun>

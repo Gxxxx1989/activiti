@@ -1,0 +1,41 @@
+package activity.helloworld;
+
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.repository.Deployment;
+import org.junit.Test;
+
+public class HelloWorld {
+	
+	ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+	/**
+	 * 部署流程定义
+	 * @author guoxi
+	 */
+	@Test
+	public void deploymentProcessDefinition() {
+		System.out.println("processEngine:"+processEngine);
+		
+		 Deployment deploy = processEngine.getRepositoryService()/**与流程对象和部署定义相关的service*/
+		 			  .createDeployment()/**创建一个部署对象*/
+		 			  .name("helloworld入门程序")/**添加部署名称*/
+		 			  .addClasspathResource("diagrams/helloworld.bpmn")/**从classpath的资源加载，一次只能加载一个文件*/
+		 			  .addClasspathResource("diagrams/helloworld.png")
+		 			  .deploy();
+		 System.out.println("deploy:id:"+deploy.getId());
+		 System.out.println("deploy:name:"+deploy.getName());
+		
+	}
+	/**
+	 * 启动流程实例
+	 * @author guoxi
+	 */
+	public  void startDeploymentInstance() {
+		//流程定义的key
+		processEngine.getRuntimeService()/**与正在执行的流程实例和执行对象相关的service*/
+		/**使用流程定义的key启动流程实例,key对应helloworld.bpmn文件中 process id属性值，使用key启动，默认是按照最新版本的流程定义启动*/
+					  .startProcessInstanceByKey("");
+	}
+	
+}

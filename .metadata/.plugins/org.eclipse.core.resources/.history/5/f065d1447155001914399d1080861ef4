@@ -1,0 +1,66 @@
+package activity.processdefinition;
+
+import java.io.InputStream;
+import java.util.zip.ZipInputStream;
+
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.impl.transformer.StringToInteger;
+import org.activiti.engine.repository.Deployment;
+import org.junit.Test;
+
+public class ProcessDefinition {
+	ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+	/**
+	 * 部署流程定义
+	 * @author guoxi 从classpath
+	 */
+	@Test
+	public void deploymentProcessDefinition_classpath() {
+		System.out.println("processEngine:"+processEngine);
+		
+		 Deployment deploy = processEngine.getRepositoryService()/**与流程对象和部署定义相关的service*/
+		 			  .createDeployment()/**创建一个部署对象*/
+		 			  .name("流程定义")/**添加部署名称*/
+		 			  .addClasspathResource("diagrams/helloworld.bpmn")/**从classpath的资源加载，一次只能加载一个文件*/
+		 			  .addClasspathResource("diagrams/helloworld.png")
+		 			  .deploy();
+		 System.out.println("部署deploy:id:"+deploy.getId());
+		 System.out.println("部署deploy:name:"+deploy.getName());
+		
+	}
+	
+	/**
+	 * 部署流程定义
+	 * @author guoxi 从zip
+	 */
+	@Test
+	public void deploymentProcessDefinition_zip() {
+		System.out.println("processEngine:"+processEngine);
+		
+		InputStream in=this.getClass().getClassLoader().getResourceAsStream("diagrams/activity.zip");
+		ZipInputStream zipInputStream=new ZipInputStream(in);
+		
+		 Deployment deploy = processEngine.getRepositoryService()/**与流程对象和部署定义相关的service*/
+		 			  .createDeployment()/**创建一个部署对象*/
+		 			  .name("流程定义")/**添加部署名称*/
+		 			  .addZipInputStream(zipInputStream)/**指定zip 的输入流*/
+		 			  .deploy();
+		 System.out.println("部署deploy:id:"+deploy.getId());
+		 System.out.println("部署deploy:name:"+deploy.getName());
+		
+	}
+	/**查询流程定义*/
+	@Test
+	public void findProcessDefinetion(){
+		String deploymentId="";
+		processEngine.getRepositoryService()//与流程定义部署相关service
+					 .createProcessDefinitionQuery()
+					 //指定查询条件
+					 .deploymentId()//使用部署对象id
+					 
+					 
+		
+		
+		}
+	}

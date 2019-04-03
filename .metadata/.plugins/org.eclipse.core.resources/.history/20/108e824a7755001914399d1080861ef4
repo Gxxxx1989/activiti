@@ -1,0 +1,129 @@
+package activity.processdefinition;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.zip.ZipInputStream;
+
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.repository.Deployment;
+import org.apache.commons.io.FileUtils;
+import org.junit.Test;
+import org.springframework.util.FileCopyUtils;
+
+public class ProcessDefinition {
+	ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+	/**
+	 * 部署流程定义
+	 * @author guoxi 从classpath
+	 */
+	@Test
+	public void deploymentProcessDefinition_classpath() {
+		System.out.println("processEngine:"+processEngine);
+		
+		 Deployment deploy = processEngine.getRepositoryService()/**与流程对象和部署定义相关的service*/
+		 			  .createDeployment()/**创建一个部署对象*/
+		 			  .name("流程定义")/**添加部署名称*/
+		 			  .addClasspathResource("diagrams/helloworld.bpmn")/**从classpath的资源加载，一次只能加载一个文件*/
+		 			  .addClasspathResource("diagrams/helloworld.png")
+		 			  .deploy();
+		 System.out.println("部署deploy:id:"+deploy.getId());
+		 System.out.println("部署deploy:name:"+deploy.getName());
+		
+	}
+	
+	/**
+	 * 部署流程定义
+	 * @author guoxi 从zip
+	 */
+	@Test
+	public void deploymentProcessDefinition_zip() {
+		System.out.println("processEngine:"+processEngine);
+		
+		InputStream in=this.getClass().getClassLoader().getResourceAsStream("diagrams/activity.zip");
+		ZipInputStream zipInputStream=new ZipInputStream(in);
+		
+		 Deployment deploy = processEngine.getRepositoryService()/**与流程对象和部署定义相关的service*/
+		 			  .createDeployment()/**创建一个部署对象*/
+		 			  .name("流程定义")/**添加部署名称*/
+		 			  .addZipInputStream(zipInputStream)/**指定zip 的输入流*/
+		 			  .deploy();
+		 System.out.println("部署deploy:id:"+deploy.getId());
+		 System.out.println("部署deploy:name:"+deploy.getName());
+		
+	}
+	/**查询流程定义*/
+	@Test
+	public void findProcessDefinetion(){
+		String deploymentId="";
+		String processDefinitionId="";
+		String processDefinitionKey="";
+		List<org.activiti.engine.repository.ProcessDefinition> list = processEngine.getRepositoryService()//与流程定义部署相关service
+					 .createProcessDefinitionQuery()
+					 //指定查询条件
+//					 .deploymentId(deploymentId)//使用部署对象id 查询
+//					 .processDefinitionId(processDefinitionId)//使用流程定义id查询
+//					 .processDefinitionKey(processDefinitionKey)//使用流程定义key查询
+					 /**排序*/
+//					 .orderByProcessDefinitionVersion().asc();
+//					 .orderByProcessDefinitionName().desc();
+					 /**返回结果集*/
+					 .list();//返回结果集，封装流程定义
+//					 .singleResult();
+//					 .count();
+//					 .listPage(firstResult, maxResults);
+					 if (list!=null&&list.size()!=0) {
+						for (org.activiti.engine.repository.ProcessDefinition processDefinition : list) {
+							System.out.println("processDefinition:"+processDefinition.getId());
+							System.out.println("processDefinition:"+processDefinition.getName());
+							System.out.println("processDefinition:"+processDefinition.getKey());
+							System.out.println("processDefinition:"+processDefinition.getVersion());
+							System.out.println("processDefinition:"+processDefinition.getResourceName());
+							System.out.println("processDefinition:"+processDefinition.getDiagramResourceName());
+							System.out.println("processDefinition:"+processDefinition.getDeploymentId());
+						}
+					}
+			}
+	
+		/**删除流程定义*/
+		@Test
+		public void delProcessDefinition(){
+			String deploymentId="15001";
+//			processEngine.getRepositoryService()
+//						//不带级联删除，只能删除没有启动的流程，如果流程启动就会抛出异常
+//						 .deleteDeployment(deploymentId);
+			//级联删除 项目中一般使用级联删除
+			processEngine.getRepositoryService()
+						 .deleteDeployment(deploymentId, true);
+			System.out.println("删除成功！！！");
+		}
+		
+		/**产看流程图*/
+		@Test
+		public void viewPic(){
+			String deploymentId = "12501";
+			/**将生成的图片放到文件夹下*/
+			//获取图片名称
+			List<String> list = processEngine.getRepositoryService().getDeploymentResourceNames(deploymentId);
+			//定义图片资源名称
+			String resourceName="";
+			if (list!=null && list.size()!=0) {
+				for (String name : list) {
+					if (name.indexOf(".png")>0) {
+						resourceName=name;
+					}
+				}
+			}
+			InputStream in = processEngine.getRepositoryService().getResourceAsStream(deploymentId, resourceName);
+			File file=new File("D:/"+resourceName);
+			//将输入流的图片写到D盘
+			try {
+				FileUtils.copyInputStreamToFile(in, file);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	
+	}

@@ -1,0 +1,13 @@
+1554215473048	Rename type 'Test'
+1554218111347	Rename resource 'activity-cfg.xml'
+1554221663495	Rename resource 'MyProcess.bpmn'
+1554222290272	Rename resource 'MyProcess.png'
+1554222680989	Rename resource 'activity.cfg.xml'
+1554292842878	Copy package
+1554292861896	Rename package 'activity.processdefinition.copy'
+1554292867040	Delete element
+1554309247627	Delete element
+1554309252142	Delete element
+1554309813103	Copy compilation unit
+1554309829727	Delete element
+1554309834677	Rename type 'ProcessInstance'

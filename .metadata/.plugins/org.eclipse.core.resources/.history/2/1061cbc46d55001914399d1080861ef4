@@ -1,0 +1,16 @@
+package activity.processdefinition;
+
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngines;
+import org.junit.Test;
+
+public class ProcessDefinition {
+	ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+	/**
+	 * 部署流程定义
+	 */
+	@Test
+	public void name() {
+		
+	}
+}

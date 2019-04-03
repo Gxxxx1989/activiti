@@ -1,0 +1,39 @@
+package activity.instance;
+
+import java.io.InputStream;
+import java.util.zip.ZipInputStream;
+
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngineConfiguration;
+import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.repository.Deployment;
+import org.junit.Test;
+
+public class ProcessInstance {
+	// 从classpath下获取流程引擎 默认文件是activiti.cfg.xml
+	// ProcessEngine processEngine=ProcessEngines.getDefaultProcessEngine();
+	ProcessEngine processEngine = ProcessEngineConfiguration.createProcessEngineConfigurationFromResource("")
+			.buildProcessEngine();
+
+	/**
+	 * 部署流程定义
+	 * 
+	 * @author guoxi 从zip
+	 */
+	@Test
+	public void deploymentProcessDefinition_zip() {
+		System.out.println("processEngine:" + processEngine);
+
+		InputStream in = this.getClass().getClassLoader().getResourceAsStream("diagrams/activity.zip");
+		ZipInputStream zipInputStream = new ZipInputStream(in);
+
+		Deployment deploy = processEngine.getRepositoryService()/** 与流程对象和部署定义相关的service */
+				.createDeployment()/** 创建一个部署对象 */
+				.name("流程定义")/** 添加部署名称 */
+				.addZipInputStream(zipInputStream)/** 指定zip 的输入流 */
+				.deploy();
+		System.out.println("部署deploy:id:" + deploy.getId());
+		System.out.println("部署deploy:name:" + deploy.getName());
+
+	}
+}

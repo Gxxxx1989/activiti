@@ -1,0 +1,10 @@
+package activity.variables;
+
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngineConfiguration;
+public class ProcessVariables {
+	
+//	ProcessEngine processEngine=ProcessEngines.getDefaultProcessEngine();
+	ProcessEngine processEngine=ProcessEngineConfiguration
+			.createProcessEngineConfigurationFromResource("activiti.cfg.xml").buildProcessEngine();
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="SequenceFlow.comlepeMyPersonalTask" project="activity" tests="1" started="1" failures="0" errors="1" ignored="0">
+  <testcase name="comlepeMyPersonalTask" classname="activity.sequeflow.SequenceFlow" time="0.025">
+    <error>org.activiti.engine.ActivitiException: Unknown property used in expression: #{message==不重要}&#13;
+	at org.activiti.engine.impl.el.JuelExpression.getValue(JuelExpression.java:53)&#13;
+	at org.activiti.engine.impl.el.UelExpressionCondition.evaluate(UelExpressionCondition.java:37)&#13;
+	at org.activiti.engine.impl.bpmn.behavior.BpmnActivityBehavior.performOutgoingBehavior(BpmnActivityBehavior.java:128)&#13;
+	at org.activiti.engine.impl.bpmn.behavior.BpmnActivityBehavior.performDefaultOutgoingBehavior(BpmnActivityBehavior.java:66)&#13;
+	at org.activiti.engine.impl.bpmn.behavior.FlowNodeActivityBehavior.leave(FlowNodeActivityBehavior.java:44)&#13;
+	at org.activiti.engine.impl.bpmn.behavior.AbstractBpmnActivityBehavior.leave(AbstractBpmnActivityBehavior.java:47)&#13;
+	at org.activiti.engine.impl.bpmn.behavior.UserTaskActivityBehavior.signal(UserTaskActivityBehavior.java:165)&#13;
+	at org.activiti.engine.impl.persistence.entity.ExecutionEntity.signal(ExecutionEntity.java:409)&#13;
+	at org.activiti.engine.impl.persistence.entity.TaskEntity.complete(TaskEntity.java:201)&#13;
+	at org.activiti.engine.impl.cmd.CompleteTaskCmd.execute(CompleteTaskCmd.java:52)&#13;
+	at org.activiti.engine.impl.cmd.CompleteTaskCmd.execute(CompleteTaskCmd.java:24)&#13;
+	at org.activiti.engine.impl.cmd.NeedsActiveTaskCmd.execute(NeedsActiveTaskCmd.java:59)&#13;
+	at org.activiti.engine.impl.interceptor.CommandInvoker.execute(CommandInvoker.java:24)&#13;
+	at org.activiti.engine.impl.interceptor.CommandContextInterceptor.execute(CommandContextInterceptor.java:57)&#13;
+	at org.activiti.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:31)&#13;
+	at org.activiti.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:40)&#13;
+	at org.activiti.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:35)&#13;
+	at org.activiti.engine.impl.TaskServiceImpl.complete(TaskServiceImpl.java:175)&#13;
+	at activity.sequeflow.SequenceFlow.comlepeMyPersonalTask(SequenceFlow.java:82)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at java.lang.reflect.Method.invoke(Unknown Source)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)&#13;
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)&#13;
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+Caused by: org.activiti.engine.impl.javax.el.PropertyNotFoundException: Cannot resolve identifier 'message'&#13;
+	at org.activiti.engine.impl.juel.AstIdentifier.eval(AstIdentifier.java:83)&#13;
+	at org.activiti.engine.impl.juel.AstBinary$SimpleOperator.eval(AstBinary.java:27)&#13;
+	at org.activiti.engine.impl.juel.AstBinary.eval(AstBinary.java:106)&#13;
+	at org.activiti.engine.impl.juel.AstEval.eval(AstEval.java:50)&#13;
+	at org.activiti.engine.impl.juel.AstNode.getValue(AstNode.java:26)&#13;
+	at org.activiti.engine.impl.juel.TreeValueExpression.getValue(TreeValueExpression.java:114)&#13;
+	at org.activiti.engine.impl.delegate.ExpressionGetInvocation.invoke(ExpressionGetInvocation.java:33)&#13;
+	at org.activiti.engine.impl.delegate.DelegateInvocation.proceed(DelegateInvocation.java:37)&#13;
+	at org.activiti.engine.impl.delegate.DefaultDelegateInterceptor.handleInvocation(DefaultDelegateInterceptor.java:25)&#13;
+	at org.activiti.engine.impl.el.JuelExpression.getValue(JuelExpression.java:48)&#13;
+	... 41 more&#13;
+&#13;
+</error>
+  </testcase>
+</testrun>

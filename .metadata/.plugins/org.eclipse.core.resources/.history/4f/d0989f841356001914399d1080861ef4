@@ -1,0 +1,115 @@
+package activity.instance;
+
+import java.io.InputStream;
+import java.util.List;
+import java.util.zip.ZipInputStream;
+
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngineConfiguration;
+import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.history.HistoricActivityInstance;
+import org.activiti.engine.history.HistoricActivityInstanceQuery;
+import org.activiti.engine.repository.Deployment;
+import org.activiti.engine.task.Task;
+import org.junit.Test;
+
+public class ProcessInstance {
+	// 从classpath下获取流程引擎 默认文件是activiti.cfg.xml
+	// ProcessEngine processEngine=ProcessEngines.getDefaultProcessEngine();
+	ProcessEngine processEngine = ProcessEngineConfiguration.createProcessEngineConfigurationFromResource("activiti.cfg.xml")
+			.buildProcessEngine();
+
+	/**
+	 * 部署流程定义
+	 * 
+	 * @author guoxi 从zip
+	 */
+	@Test
+	public void deploymentProcessDefinition_zip() {
+		System.out.println("processEngine:" + processEngine);
+
+		InputStream in = this.getClass().getClassLoader().getResourceAsStream("diagrams/activity.zip");
+		ZipInputStream zipInputStream = new ZipInputStream(in);
+
+		Deployment deploy = processEngine.getRepositoryService()/** 与流程对象和部署定义相关的service */
+				.createDeployment()/** 创建一个部署对象 */
+				.name("流程定义")/** 添加部署名称 */
+				.addZipInputStream(zipInputStream)/** 指定zip 的输入流 */
+				.deploy();
+		System.out.println("部署deploy:id:" + deploy.getId());
+		System.out.println("部署deploy:name:" + deploy.getName());
+
+	}
+	/**启动流程实例*/
+	@Test
+	public void startProcessInstance(){
+		org.activiti.engine.runtime.ProcessInstance processInstance = processEngine.getRuntimeService()
+		.startProcessInstanceByKey("helloworld");
+		System.out.println("流程实例Id："+processInstance.getId());
+		System.out.println("流程定义Id："+processInstance.getProcessDefinitionId());
+	}
+	
+	@Test
+	public void queryMypersonalTask(){
+		String assignee="王五";
+		List<Task> list = processEngine.getTaskService()/**与个人任务管理相关的service 表act_ru_task*/
+												.createTaskQuery()
+												.taskAssignee(assignee)
+												.list();
+		if (list!=null&&list.size()!=0) {
+			for (Task task : list) {
+				System.out.println("任务id："+task.getId());
+				System.out.println("任务名称："+task.getName());
+				System.out.println("任务创建时间："+task.getCreateTime());
+				System.out.println("任务办理人："+task.getAssignee());
+				System.out.println("流程实例id："+task.getProcessInstanceId());
+				System.out.println("执行对象id："+task.getExecutionId());
+				System.out.println("执行定义id："+task.getProcessDefinitionId());
+				System.out.println("############################################");
+			}
+		}
+	}
+	
+	/**
+	 * 完成我的任务
+	 */
+	@Test
+	public void comlepeMyPersonalTask() {
+		String taskId="32502";
+		processEngine.getTaskService().complete(taskId);
+		System.out.println("完成任务！！！ 任务id是:"+taskId);
+	}
+	/**查询流程状态 重要(判断流程是否结束)*/
+	@Test
+	public void isProcessEnd(){
+		String processInstanceId="25001";
+		org.activiti.engine.runtime.ProcessInstance processInstance = processEngine.getRuntimeService()
+		.createProcessInstanceQuery()//创建流程实例查询
+		.processInstanceId(processInstanceId)//使用流程实例id查询
+		.singleResult();
+		if (processInstance==null) {
+			System.out.println("流程结束!!!");
+		}else {
+			System.out.println("流程正在进行中...");
+		}
+	}
+	/**查询历史任务*/
+	@Test
+	public void queryHistoryTask(){
+		String processInstanceId="25001";
+		String userId="张三";
+		List<HistoricActivityInstance> list = processEngine.getHistoryService()
+		.createHistoricActivityInstanceQuery()
+		.processInstanceId(processInstanceId)
+//		.taskAssignee(userId);
+		.list();
+		for (HistoricActivityInstance historicActivityInstance : list) {
+			System.out.println(historicActivityInstance.getId());
+		}
+		
+		HistoricActivityInstanceQuery query = processEngine.getHistoryService()
+		.createHistoricActivityInstanceQuery()
+		.taskAssignee(userId);
+		System.out.println(query);
+	}
+}

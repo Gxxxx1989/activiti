@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ProcessVariables" project="activity" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="activity.variables.ProcessVariables" time="1.012">
+    <testcase name="getProcessVariables" classname="activity.variables.ProcessVariables" time="0.195"/>
+    <testcase name="startDeploymentInstance" classname="activity.variables.ProcessVariables" time="0.309"/>
+    <testcase name="setVariable" classname="activity.variables.ProcessVariables" time="0.215"/>
+    <testcase name="comlepeMyPersonalTask" classname="activity.variables.ProcessVariables" time="0.237"/>
+    <testcase name="deploymentProcessDefinition_inputstream" classname="activity.variables.ProcessVariables" time="0.056"/>
+  </testsuite>
+</testrun>

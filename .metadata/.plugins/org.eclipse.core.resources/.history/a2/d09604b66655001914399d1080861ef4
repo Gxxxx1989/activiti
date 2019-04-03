@@ -1,0 +1,33 @@
+package activity.helloworld;
+
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.repository.Deployment;
+import org.junit.Test;
+
+public class HelloWorld {
+	
+	ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+	/**
+	 * 部署流程定义
+	 * @author guoxi
+	 */
+	@Test
+	public void deploymentProcessDefinition() {
+		System.out.println("processEngine:"+processEngine);
+		
+		 Deployment deploy = processEngine.getRepositoryService()/**与流程对象和部署定义相关的service*/
+		 			  .createDeployment()/**创建一个部署对象*/
+		 			  .name("helloworld入门程序")/**添加部署名称*/
+		 			  .addClasspathResource("diagrams/helloworld.bpmn")/**从classpath的资源加载，一次只能加载一个文件*/
+		 			  .addClasspathResource("diagrams/helloworld.png")
+		 			  .deploy();
+		 System.out.println("deploy:id:"+deploy.getId());
+		 System.out.println("deploy:name:"+deploy.getName());
+		
+	}
+	/**
+	 * 启动流程实例
+	 */
+}

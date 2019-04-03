@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestActivity.createTableFromxml" project="activity" tests="1" started="1" failures="0" errors="1" ignored="0">
+  <testcase name="createTableFromxml" classname="activity.TestActivity" time="0.16">
+    <error>org.springframework.beans.factory.parsing.BeanDefinitionParsingException: Configuration problem: Unexpected failure during bean definition parsing
+Offending resource: class path resource [activity.cfg.xml]
+Bean ''; nested exception is org.springframework.beans.factory.parsing.BeanDefinitionParsingException: Configuration problem: Multiple 'property' definitions for property 'jdbcDriver'
+Offending resource: class path resource [activity.cfg.xml]
+Property 'jdbcDriver'
+	-&gt; Bean ''&#13;
+	at org.springframework.beans.factory.parsing.FailFastProblemReporter.error(FailFastProblemReporter.java:72)&#13;
+	at org.springframework.beans.factory.parsing.ReaderContext.error(ReaderContext.java:119)&#13;
+	at org.springframework.beans.factory.xml.BeanDefinitionParserDelegate.error(BeanDefinitionParserDelegate.java:288)&#13;
+	at org.springframework.beans.factory.xml.BeanDefinitionParserDelegate.parseBeanDefinitionElement(BeanDefinitionParserDelegate.java:540)&#13;
+	at org.springframework.beans.factory.xml.BeanDefinitionParserDelegate.parseBeanDefinitionElement(BeanDefinitionParserDelegate.java:437)&#13;
+	at org.springframework.beans.factory.xml.BeanDefinitionParserDelegate.parseBeanDefinitionElement(BeanDefinitionParserDelegate.java:405)&#13;
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.processBeanDefinition(DefaultBeanDefinitionDocumentReader.java:305)&#13;
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.parseDefaultElement(DefaultBeanDefinitionDocumentReader.java:196)&#13;
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.parseBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:175)&#13;
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.doRegisterBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:148)&#13;
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.registerBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:98)&#13;
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.registerBeanDefinitions(XmlBeanDefinitionReader.java:507)&#13;
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:391)&#13;
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:335)&#13;
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:303)&#13;
+	at org.activiti.engine.impl.cfg.BeansConfigurationHelper.parseProcessEngineConfiguration(BeansConfigurationHelper.java:35)&#13;
+	at org.activiti.engine.impl.cfg.BeansConfigurationHelper.parseProcessEngineConfigurationFromResource(BeansConfigurationHelper.java:48)&#13;
+	at org.activiti.engine.ProcessEngineConfiguration.createProcessEngineConfigurationFromResource(ProcessEngineConfiguration.java:232)&#13;
+	at org.activiti.engine.ProcessEngineConfiguration.createProcessEngineConfigurationFromResource(ProcessEngineConfiguration.java:228)&#13;
+	at activity.TestActivity.createTableFromxml(TestActivity.java:32)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at java.lang.reflect.Method.invoke(Unknown Source)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)&#13;
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)&#13;
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+Caused by: org.springframework.beans.factory.parsing.BeanDefinitionParsingException: Configuration problem: Multiple 'property' definitions for property 'jdbcDriver'
+Offending resource: class path resource [activity.cfg.xml]
+Property 'jdbcDriver'
+	-&gt; Bean ''&#13;
+	at org.springframework.beans.factory.parsing.FailFastProblemReporter.error(FailFastProblemReporter.java:72)&#13;
+	at org.springframework.beans.factory.parsing.ReaderContext.error(ReaderContext.java:119)&#13;
+	at org.springframework.beans.factory.parsing.ReaderContext.error(ReaderContext.java:111)&#13;
+	at org.springframework.beans.factory.xml.BeanDefinitionParserDelegate.error(BeanDefinitionParserDelegate.java:281)&#13;
+	at org.springframework.beans.factory.xml.BeanDefinitionParserDelegate.parsePropertyElement(BeanDefinitionParserDelegate.java:841)&#13;
+	at org.springframework.beans.factory.xml.BeanDefinitionParserDelegate.parsePropertyElements(BeanDefinitionParserDelegate.java:705)&#13;
+	at org.springframework.beans.factory.xml.BeanDefinitionParserDelegate.parseBeanDefinitionElement(BeanDefinitionParserDelegate.java:525)&#13;
+	... 39 more&#13;
+&#13;
+</error>
+  </testcase>
+</testrun>
